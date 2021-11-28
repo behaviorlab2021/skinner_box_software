@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 - Create a picture with a corn seed
 - Insert a clock event
@@ -10,3 +11,11 @@
 - Change phase every x(15) seconds.
     - Change image depending on phase.
 
+=======
+Led on touch
+Speed up loop, sensitivity
+background
+sounds  ---> zapsplat.com button click
+graphs y,x timechart
+hi
+>>>>>>> b4db289677221e83870f76ad208821f21093134f

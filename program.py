@@ -18,20 +18,13 @@ relay_is_on = False
 class ImageButton(ButtonBehavior, Image):
     
     def __init__(self, **kwargs):
-        
         super(ImageButton, self).__init__(**kwargs)
-
     def on_touch_down(self, touch):
         # print(f"X {touch.sx} Y {touch.sy}")
         if (((touch.sx  - 0.5 ) * float(Window.size[0]/Window.size[1])) **2 + (touch.sy - .8)**2 ) ** 0.5  < 0.10 :
             self.source = "green_dark.png"
-
             print(relay_is_on) 
 
-
-
-
-            
     
     def on_touch_up(self, touch):
         self.source = "green_light.png"
