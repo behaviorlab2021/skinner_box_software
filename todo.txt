@@ -1,5 +1,12 @@
-Led on touch
-Speed up loop, sensitivity
-background
-sounds  ---> zapsplat.com button click
-graphs y,x timechart
+
+- Create a picture with a corn seed
+- Insert a clock event
+- Add functions to open and close relay
+- Add extra clicks functionality
+- Add buttons of different colors
+- Add click sounds
+- Keep data sheet
+- Close if screen is pressed for 3 seconds
+- Change phase every x(15) seconds.
+    - Change image depending on phase.
+

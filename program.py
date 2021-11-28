@@ -9,34 +9,36 @@ from kivy.config import Config
 from kivy.core.window import Window
 from kivy.clock import Clock
 
-Window.fullscreen = True
+# Window.fullscreen = True
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
-class ImageButton(ButtonBehavior, Image):  
-    def __init__(self, **kwargs):
-        super(ImageButton, self).__init__(**kwargs)
-        self.My_Clock = Clock
-        self.My_Clock.schedule_interval(self.Update, 1/60.)
-    def on_press(self):
-    	self.source = "green_dark.png"
-    	print ('pressed')
-    def on_release(self):
-        super().on_touch_down(touch)
-        self.source = "green_light.png"
-        print ('pressed')
-    def on_touch_down(self, touch):
+relay_is_on = False
 
-        print(f"X {touch.sx} Y {touch.sy}")
-        if (touch.sx - 0.5 )**2 + (touch.sy - .8)**2  < 0.01 :
-            self.My_Clock.unschedule(self.Update)
+class ImageButton(ButtonBehavior, Image):
+    
+    def __init__(self, **kwargs):
+        
+        super(ImageButton, self).__init__(**kwargs)
+
+    def on_touch_down(self, touch):
+        # print(f"X {touch.sx} Y {touch.sy}")
+        if (((touch.sx  - 0.5 ) * float(Window.size[0]/Window.size[1])) **2 + (touch.sy - .8)**2 ) ** 0.5  < 0.10 :
             self.source = "green_dark.png"
+
+            print(relay_is_on) 
+
+
+
+
+            
+    
     def on_touch_up(self, touch):
         self.source = "green_light.png"
 
-
 class SkinnerBoxApp(App):
     def build(self):
+        self.load_kv("program.kv")
         return FloatLayout()
 
 if __name__ == "__main__":
