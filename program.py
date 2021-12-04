@@ -13,14 +13,44 @@ from kivy.clock import Clock
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
+
 class Experiment:
+
     def __init__(self):
         self.time_active = 0
         self.phase = 1
+        self.feed_time = 3
+        self.button_counter = 0
+        self.click_ratio = 1
+    
+    def check_condition(self):
+        return self.button_counter >= self.click_ratio
+    
+    def increase_btn_count(self):
+
+        self.button_counter = self.button_counter + 1
+        print(f"Button Counter:{self.button_counter}")
+
+    def clear_counter(self):
+        self.counter = 0
         
 class Feeder:
-     def __init__(self):
+
+    def __init__(self):
+        self.counter = 0 
         self.is_active = False
+
+    def activate(self):
+        self.is_active = True
+
+    def deactivate(self):
+        self.is_active = False
+        print("Feeder is reactivated")
+        pass
+
+    def create_deactivate_feeder_event(self, feed_time):
+        Clock.schedule_once(lambda dt: self.deactivate(), feed_time)
+        pass
 
 class ImageButton(ButtonBehavior, Image):
 
@@ -30,18 +60,16 @@ class ImageButton(ButtonBehavior, Image):
         super(ImageButton, self).__init__(**kwargs)
 
     def on_touch_down(self, touch):
-
         if self.touch_on_button(touch):
             self.change_button_color("green_dark.png")
- 
             if feeder.is_active:
                 # todo: write "extra" position data...
                 pass
-            else:
-
-                # check condition ()
-                # open feeder if condition is True
-                # Schedule feeder deactivation after n seconds
+            else: 
+                experiment.increase_btn_count()
+                if experiment.check_condition():
+                    feeder.activate()
+                    feeder.create_deactivate_feeder_event(experiment.feed_time)
                 pass              
 
         else:
@@ -54,7 +82,6 @@ class ImageButton(ButtonBehavior, Image):
     def change_button_color(self, image_source):
         self.source = image_source
     
-
     def touch_on_button(self, touch):
 
         window_x = Window.size[0]
@@ -72,31 +99,24 @@ class ImageButton(ButtonBehavior, Image):
         dist_from_center  = distance_from_center(touch.sx, touch.sy, button_center_x, button_center_y, aspect_ratio)
 
         return  dist_from_center < button_radius
-    
 
-class SkinnerBoxApp(App):
-    def build(self):
+class MainApp(App):
+
+    def __init__(self, **kwargs):
         self.load_kv("program.kv")
-        return FloatLayout()
+        self.layout = FloatLayout()
+        super(MainApp, self).__init__(**kwargs)
 
-
-def activate_feeder():
-    pass
-
-def deactivate_feeder():
-    pass
-
-def create_deactivate_feeder_event():
-    pass
-
-def check_condition():
-    pass
+    def build(self):
+        return self.layout
 
 def distance_from_center (point_x, point_y, center_x, center_y, aspect_ratio):
-
     return (((point_x - center_x) * aspect_ratio) **2 + (point_y - center_y)**2 ) ** 0.5
-
 
 if __name__ == "__main__":
   feeder = Feeder()
-  SkinnerBoxApp().run()
+  experiment = Experiment()
+  mainApp = MainApp()
+  mainApp.run()
+
+
