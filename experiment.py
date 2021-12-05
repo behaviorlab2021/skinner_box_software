@@ -12,13 +12,13 @@ class Experiment:
     def __init__(self):
 
         self.time_active = 0
-        self.senario = 2
+        self.senario = 1
         self.starting_case = 1
         self.case = self.starting_case
         self.feed_time = 3
         self.button_counter = 0
         self.click_ratio = 1
-        self.case_change_time = 5
+        self.case_change_time = 15
         self.feeding_condition = True
         
         self.image_list_light = self.image_list_light_temp[self.senario - 1]
