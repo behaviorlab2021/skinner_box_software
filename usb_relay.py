@@ -8,11 +8,19 @@ boards = usbrelay_py.board_details()
 print("Boards: ",boards)
 
 def activate_relay():
-    usbrelay_py.board_control(boards[0][0], 1, 1)
+
+    try:
+        usbrelay_py.board_control(boards[0][0], 1, 1)
+    except:
+        print("No relay found. Cannot activate.")
+        pass
 
 
 def deactivate_relay():
-    usbrelay_py.board_control(boards[0][0], 1, 0)
-
+    try:
+        usbrelay_py.board_control(boards[0][0], 1, 0)
+    except:
+        print("No relay found. Cannot deactivate.")
+        pass
 
 

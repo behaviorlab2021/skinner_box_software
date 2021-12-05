@@ -12,8 +12,8 @@ from experiment import Experiment
 from feeder import Feeder
 from functions import distance_from_center
 
-Window.fullscreen = True
-Window.show_cursor = False
+# Window.fullscreen = True
+# Window.show_cursor = False
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
@@ -22,12 +22,18 @@ class ImageButton(ButtonBehavior, Image):
     def __init__(self, **kwargs):
         self.is_active = True
         self.counter = 0
+        print("In init....")
+        
+        Clock.schedule_interval(self.update_button, 0.5)
+        
+        Clock.schedule_interval(experiment.change_case, experiment.case_change_time)
+
         super(ImageButton, self).__init__(**kwargs)
 
     def on_touch_down(self, touch):
         if self.touch_on_button(touch):
-            self.change_button_color("green_dark.png")
-            if feeder.is_active:
+            self.change_button_color(experiment.button_image_dark)
+            if feeder.is_active and experiment.feeding_condition:
                 # todo: write "extra" position data...
                 pass
             else: 
@@ -36,13 +42,12 @@ class ImageButton(ButtonBehavior, Image):
                     feeder.activate()
                     feeder.create_deactivate_feeder_event(experiment.feed_time)
                 pass              
-
         else:
             # todo: write "miss" position data...
             print("miss")
 
     def on_touch_up(self, touch):
-        self.change_button_color("green_light.png")
+        self.change_button_color(experiment.button_image_light)
     
     def change_button_color(self, image_source):
         self.source = image_source
@@ -64,6 +69,12 @@ class ImageButton(ButtonBehavior, Image):
         dist_from_center  = distance_from_center(touch.sx, touch.sy, button_center_x, button_center_y, aspect_ratio)
 
         return  dist_from_center < button_radius
+    
+
+    def update_button(self, dt):
+        print("In update....")
+        self.change_button_color(experiment.button_image_light)
+        
 
 class MainApp(App):
 
