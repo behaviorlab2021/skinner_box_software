@@ -61,14 +61,11 @@ class Experiment:
             pass
 
     def change_case_feeding_condition(self):
-        if self.case == 1:
+        print(f"here in changing fase the feeding condition is  {self.feeding_condition}")
+        if self.case == 2:
             self.feeding_condition = False
         
-        elif self.case == 2:
+        elif self.case == 1:
             self.feeding_condition = True
-        else:
-            pass
-
-    def create_change_case_event(self, feed_time):
-        Clock.schedule_once(lambda dt: self.change_case(), self.case_change_time)
-        pass
+        
+        print(f"Changed feeding condition to {self.feeding_condition}")

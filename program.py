@@ -33,7 +33,13 @@ class ImageButton(ButtonBehavior, Image):
     def on_touch_down(self, touch):
         if self.touch_on_button(touch):
             self.change_button_color(experiment.button_image_dark)
-            if feeder.is_active and experiment.feeding_condition:
+
+            print(f"FEEDING CONDITION: {experiment.feeding_condition}")
+
+            if not experiment.feeding_condition:
+                pass
+
+            elif feeder.is_active:
                 # todo: write "extra" position data...
                 pass
             else: 
@@ -72,7 +78,6 @@ class ImageButton(ButtonBehavior, Image):
     
 
     def update_button(self, dt):
-        print("In update....")
         self.change_button_color(experiment.button_image_light)
         
 
