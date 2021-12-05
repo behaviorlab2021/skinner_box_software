@@ -12,7 +12,8 @@ from experiment import Experiment
 from feeder import Feeder
 from functions import distance_from_center
 
-# Window.fullscreen = True
+Window.fullscreen = True
+Window.show_cursor = False
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 

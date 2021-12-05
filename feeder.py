@@ -1,5 +1,5 @@
 
-from usb_relay import activate_relay
+from usb_relay import activate_relay, deactivate_relay
 from kivy.clock import Clock
 
 class Feeder:
@@ -14,6 +14,7 @@ class Feeder:
 
     def deactivate(self):
         self.is_active = False
+        deactivate_relay()
         print("Feeder is reactivated")
         pass
 
