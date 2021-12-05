@@ -8,49 +8,13 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.config import Config
 from kivy.core.window import Window
 from kivy.clock import Clock
+from experiment import Experiment
+from feeder import Feeder
+from functions import distance_from_center
 
 # Window.fullscreen = True
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
-
-
-class Experiment:
-
-    def __init__(self):
-        self.time_active = 0
-        self.phase = 1
-        self.feed_time = 3
-        self.button_counter = 0
-        self.click_ratio = 1
-    
-    def check_condition(self):
-        return self.button_counter >= self.click_ratio
-    
-    def increase_btn_count(self):
-
-        self.button_counter = self.button_counter + 1
-        print(f"Button Counter:{self.button_counter}")
-
-    def clear_counter(self):
-        self.counter = 0
-        
-class Feeder:
-
-    def __init__(self):
-        self.counter = 0 
-        self.is_active = False
-
-    def activate(self):
-        self.is_active = True
-
-    def deactivate(self):
-        self.is_active = False
-        print("Feeder is reactivated")
-        pass
-
-    def create_deactivate_feeder_event(self, feed_time):
-        Clock.schedule_once(lambda dt: self.deactivate(), feed_time)
-        pass
 
 class ImageButton(ButtonBehavior, Image):
 
@@ -103,6 +67,7 @@ class ImageButton(ButtonBehavior, Image):
 class MainApp(App):
 
     def __init__(self, **kwargs):
+
         self.load_kv("program.kv")
         self.layout = FloatLayout()
         super(MainApp, self).__init__(**kwargs)
@@ -110,8 +75,6 @@ class MainApp(App):
     def build(self):
         return self.layout
 
-def distance_from_center (point_x, point_y, center_x, center_y, aspect_ratio):
-    return (((point_x - center_x) * aspect_ratio) **2 + (point_y - center_y)**2 ) ** 0.5
 
 if __name__ == "__main__":
   feeder = Feeder()
