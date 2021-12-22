@@ -22,5 +22,3 @@ def deactivate_relay():
     except:
         print("No relay found. Cannot deactivate.")
         pass
-
-

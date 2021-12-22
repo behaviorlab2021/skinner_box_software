@@ -16,7 +16,7 @@ from kivy.properties import StringProperty
 
 
 Window.fullscreen = True
-Window.show_cursor = False
+# Window.show_cursor = False
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
@@ -37,7 +37,7 @@ class ImageButton(ButtonBehavior, Image):
     def on_touch_down(self, touch):
         if self.touch_on_button(touch):
             self.change_button_color(experiment.button_image_dark)
-
+            Clock.schedule_once(self.update_button, 0.1)
             if feeder.is_active or not experiment.feeding_condition:
                 # todo: write "extra" position data...
                 pass
@@ -53,8 +53,7 @@ class ImageButton(ButtonBehavior, Image):
             # print("miss")
             pass
 
-    def on_touch_up(self, touch):
-        self.change_button_color(experiment.button_image_light)
+
     
     def change_button_color(self, image_source):
         self.source = image_source
@@ -90,7 +89,7 @@ class MyFloatLayout(FloatLayout):
         self.score = str(experiment.score_counter).zfill(2)
 
     def schedule_score_update(self):
-        Clock.schedule_interval(self.update_score, 5)
+        Clock.schedule_interval(self.update_score, 0.5)
 
 
 class MainApp(App):
