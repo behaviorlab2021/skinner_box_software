@@ -12,7 +12,7 @@ class Experiment:
     def __init__(self):
 
         self.time_active = 0
-        self.senario = 1
+        self.senario = 2
         self.starting_case = 1
         self.case = self.starting_case
         self.feed_time = 3
@@ -32,7 +32,6 @@ class Experiment:
     
     def increase_btn_count(self):
         self.button_counter = self.button_counter + 1
-        print(f"Button Counter:{self.button_counter}")
 
     def clear_counter(self):
         self.counter = 0
@@ -41,7 +40,6 @@ class Experiment:
         self.change_case_number()
         self.change_case_feeding_condition()
         self.update_case_image()
-        
 
     def update_case_image(self):
 
@@ -52,23 +50,15 @@ class Experiment:
 
         if self.case == 1:
             self.case = 2
-            self.feeding_condition = False
-        
         elif self.case == 2:
             self.case = 1
-            self.feeding_condition = True
         else:
             pass
 
     def change_case_feeding_condition(self):
         if self.case == 1:
-            self.feeding_condition = False
-        
-        elif self.case == 2:
             self.feeding_condition = True
+        elif self.case == 2:
+            self.feeding_condition = False
         else:
             pass
-
-    def create_change_case_event(self, feed_time):
-        Clock.schedule_once(lambda dt: self.change_case(), self.case_change_time)
-        pass
