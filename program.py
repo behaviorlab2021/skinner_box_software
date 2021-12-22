@@ -15,8 +15,8 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 
 
-# Window.fullscreen = True
-# Window.show_cursor = False
+Window.fullscreen = True
+Window.show_cursor = False
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
@@ -90,7 +90,7 @@ class MyFloatLayout(FloatLayout):
         self.score = str(experiment.score_counter).zfill(2)
 
     def schedule_score_update(self):
-        Clock.schedule_interval(self.update_score, 1)
+        Clock.schedule_interval(self.update_score, 5)
 
 
 class MainApp(App):
