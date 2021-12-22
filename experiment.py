@@ -17,6 +17,7 @@ class Experiment:
         self.case = self.starting_case
         self.feed_time = 3
         self.button_counter = 0
+        self.score_counter = 0
         self.click_ratio = 1
         self.case_change_time = 15
         self.feeding_condition = True
@@ -32,6 +33,9 @@ class Experiment:
     
     def increase_btn_count(self):
         self.button_counter = self.button_counter + 1
+    
+    def increase_score_count(self):
+        self.score_counter = self.score_counter + 1
 
     def clear_counter(self):
         self.counter = 0
