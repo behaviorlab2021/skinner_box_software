@@ -24,11 +24,12 @@ class ImageButton(ButtonBehavior, Image):
         self.counter = 0
         print("In init....")
         
-        Clock.schedule_interval(self.update_button, 0.5)
-        
-        Clock.schedule_interval(experiment.change_case, experiment.case_change_time)
-
         super(ImageButton, self).__init__(**kwargs)
+
+        Clock.schedule_once(self.update_button, 0.5)
+        Clock.schedule_interval(experiment.change_case, experiment.case_change_time)
+        Clock.schedule_interval(self.update_button, experiment.case_change_time)
+
 
     def on_touch_down(self, touch):
         if self.touch_on_button(touch):
