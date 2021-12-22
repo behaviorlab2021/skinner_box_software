@@ -3,11 +3,11 @@ from kivy.clock import Clock
 
 class Experiment:
 
-    image_list_light_temp = [["brown_light.png", "white_light.png"], 
-                            ["white_light.png", "brown_light.png"]]
+    image_list_light_temp = [["assets/images/brown_light.png", "assets/images/white_light.png"], 
+                            ["assets/images/white_light.png", "assets/images/brown_light.png"]]
 
-    image_list_dark_temp = [["brown_dark.png", "white_dark.png"], 
-                            ["white_dark.png", "brown_dark.png"]]
+    image_list_dark_temp = [["assets/images/brown_dark.png", "assets/images/white_dark.png"], 
+                            ["assets/images/white_dark.png", "assets/images/brown_dark.png"]]
     
     def __init__(self):
 
@@ -18,7 +18,7 @@ class Experiment:
         self.feed_time = 3
         self.button_counter = 0
         self.click_ratio = 1
-        self.case_change_time = 5
+        self.case_change_time = 15
         self.feeding_condition = True
         
         self.image_list_light = self.image_list_light_temp[self.senario - 1]
