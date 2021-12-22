@@ -12,7 +12,7 @@ class Experiment:
     def __init__(self):
 
         self.time_active = 0
-        self.senario = 2
+        self.senario = 1
         self.starting_case = 1
         self.case = self.starting_case
         self.feed_time = 3
