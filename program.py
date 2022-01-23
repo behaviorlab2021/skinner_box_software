@@ -16,7 +16,7 @@ from kivy.properties import StringProperty
 
 
 Window.fullscreen = True
-# Window.show_cursor = False
+Window.show_cursor = False
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
