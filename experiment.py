@@ -3,8 +3,8 @@ from kivy.clock import Clock
 
 class Experiment:
 
-    image_list_light_temp = [["assets/images/brown_person_1.png", "assets/images/white_person_1.png"], 
-                            ["assets/images/white_person_1.png", "assets/images/brown_person_1.png"]]
+    image_list_light_temp = [["assets/images/brown_face_0.png", "assets/images/white_face_0.png"], 
+                            ["assets/images/white_face_0.png", "assets/images/brown_face_0.png"]]
 
     image_list_dark_temp = [["assets/images/brown_dark.png", "assets/images/white_dark.png"], 
                             ["assets/images/white_dark.png", "assets/images/brown_dark.png"]]
