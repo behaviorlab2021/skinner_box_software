@@ -8,7 +8,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.config import Config
 from kivy.core.window import Window
 from kivy.clock import Clock
-from experiment import Experiment
+from experiment_random import Experiment
 from feeder import Feeder
 from functions import distance_from_center
 from kivy.uix.widget import Widget
@@ -16,7 +16,7 @@ from kivy.properties import StringProperty
 
 
 Window.fullscreen = True
-# Window.show_cursor = False
+Window.show_cursor = False
 
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
@@ -95,7 +95,7 @@ class MyFloatLayout(FloatLayout):
 class MainApp(App):
 
     def __init__(self, **kwargs):
-        self.load_kv("program.kv")
+        self.load_kv("program_random.kv")
         self.layout = MyFloatLayout()
         super(MainApp, self).__init__(**kwargs)
 
