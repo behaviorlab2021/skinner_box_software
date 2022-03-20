@@ -38,7 +38,10 @@ class ImageButton(ButtonBehavior, Image):
         if self.touch_on_button(touch):
             self.change_button_color(experiment.button_image_dark)
             Clock.schedule_once(self.update_button, 0.1)
-            if feeder.is_active or not experiment.feeding_condition:
+            # Feeder for al phases
+            # Erased "or not experiment.feeding_condition" 
+            if feeder.is_active:
+
                 # todo: write "extra" position data...
                 pass
             else: 
@@ -95,7 +98,7 @@ class MyFloatLayout(FloatLayout):
 class MainApp(App):
 
     def __init__(self, **kwargs):
-        self.load_kv("program_random.kv")
+        self.load_kv("program_random_all.kv")
         self.layout = MyFloatLayout()
         super(MainApp, self).__init__(**kwargs)
 

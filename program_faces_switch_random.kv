@@ -1,0 +1,25 @@
+<MainApp>
+
+<ExperimentLayout>:
+
+    button_left: button_left
+    button_right: button_right
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            source: "assets/images/panel.png"
+
+    BasicImageButton:  
+        id: button_left
+        source: 'assets/images/white_face_2.png'
+        size_hint: .3, .3
+        pos_hint:  {'center_x':.3, 'center_y':.75}
+
+
+    BasicImageButton:  
+        id: button_right
+        source: 'assets/images/brown_face_2.png'
+        size_hint: .3, .3
+        pos_hint:  {'center_x':.7, 'center_y':.75} 
+

@@ -107,5 +107,3 @@ if __name__ == "__main__":
   experiment = Experiment()
   mainApp = MainApp()
   mainApp.run()
-
-

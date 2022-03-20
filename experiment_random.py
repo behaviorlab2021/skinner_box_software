@@ -17,20 +17,22 @@ class Experiment:
     def __init__(self):
 
         self.time_active = 0
-        self.senario = 2
+        self.senario = 1
         self.starting_case = 1
         self.case = self.starting_case
         self.feed_time = 3
         self.button_counter = 0
         self.score_counter = 0
         self.click_ratio = 1
-        self.case_change_time = 5
+        self.case_change_time = 15
         self.feeding_condition = True
         
         self.image_list_light = self.image_list_light_temp[self.senario - 1]
         self.image_list_dark = self.image_list_dark_temp[self.senario - 1]
 
         self.button_image_light = self.image_list_light[self.case-1][random.randint(0,2)]
+        self.button_image_light_sec = self.image_list_light[abs(self.case-2)][random.randint(0,2)]
+   
         self.button_image_dark = self.image_list_dark[self.case-1]
 
     def check_condition(self):
@@ -53,6 +55,7 @@ class Experiment:
     def update_case_image(self):
 
         self.button_image_light = self.image_list_light[self.case-1][random.randint(0,2)]
+        self.button_image_light_sec = self.image_list_light[abs(self.case-2)][random.randint(0,2)]
         self.button_image_dark = self.image_list_dark[self.case-1]
 
     def change_case_number(self):
